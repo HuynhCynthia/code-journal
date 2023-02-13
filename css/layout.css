@@ -1,41 +1,54 @@
+/* Header */
 .hidden {
   display: none !important;
 }
 
-.container {
-  max-width: 575px;
-  margin: 0 auto;
-  padding: 0;
+/* Form */
+.label {
+  margin: 0.5rem 0;
 }
 
 .row {
+  width: 100%;
+}
+
+/* Container */
+.container {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.column-full {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-.top-bar {
-  background-color: #562b81;
-  color: white;
-  font-family: sans-serif;
-  padding: 10px 0 10px 20px;
-}
-
-.column-full,
 .column-half {
   width: 100%;
 }
 
+/* Text Area and Input */
+.savebutton-container {
+  display: flex;
+}
+
+.spacer {
+  width: 100%;
+}
+
+/* Media */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
   }
 
-  .column-full,
-  .column-half {
-    padding: 0 0.75rem;
-  }
-
   .column-half {
     width: 50%;
+  }
+
+  .input-title-photourl {
+    padding-left: 3%;
   }
 }
