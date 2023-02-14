@@ -30,10 +30,25 @@
   width: 100%;
 }
 
+/* Entry */
+.entry-image {
+  width: 100%;
+}
+
+.entry-image > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.entry-description {
+  padding-left: 3%;
+  width: 100%;
+}
+
 /* Media */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
   }
 

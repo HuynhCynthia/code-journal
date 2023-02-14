@@ -8,6 +8,10 @@ body {
   font-family: Mukta, sans-serif;
 }
 
+h1 {
+  margin: 0;
+}
+
 .top-bar {
   color: white;
   padding-top: 0.5rem;
@@ -37,12 +41,13 @@ body {
   outline-color: #562b81;
 }
 
-input {
+.title-container input,
+.photourl-container input {
   height: 35px;
   padding: 0 5px;
 }
 
-textarea {
+.notes-container textarea {
   height: 100px;
   padding-left: 5px;
 }
@@ -66,5 +71,37 @@ textarea {
 }
 
 .save-button:active {
+  transform: translateY(0.1rem);
+}
+
+/* Entries */
+.entries {
+  display: flex;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.entries-heading {
+  margin: 0;
+}
+
+/* New Entry Button */
+.new-button {
+  padding: 0.5rem 0.9rem;
+  text-transform: uppercase;
+  border: none;
+  background-color: #562b81;
+  color: white;
+  border-radius: 3px;
+}
+
+.new-button:hover {
+  background-color: #720e9e;
+}
+
+.new-button:active {
   transform: translateY(0.1rem);
 }
