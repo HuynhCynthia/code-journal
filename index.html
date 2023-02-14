@@ -32,28 +32,28 @@
       <div class="column-full">
         <img class="image-url column-half" src="images/placeholder-image-square.jpg" alt="placeholder image">
         <div class="input-title-photourl column-half">
-          <div class="title-container">
+          <form class="title-container">
             <div class="label">
               <label for="title">Title</label>
             </div>
             <input class="row" type="text" id="title" required>
-          </div>
-          <div class="photourl-container">
+          </form>
+          <form class="photourl-container">
             <div class="label">
               <label for="photourl">Photo URL</label>
             </div>
-            <input class="row" type="url" id="photoURL" required>
-          </div>
+            <input class="row" type="url" id="photourl" required>
+          </form>
         </div>
       </div>
-      <div class="notes-container">
+      <form class="notes-container">
         <label for="notes">Notes</label>
-        <textarea class="notes row"></textarea>
+        <textarea class="notes row" required></textarea>
         <div class="savebutton-container">
           <div class="spacer"></div>
           <input type="submit" value="save" class="save-button"></input>
         </div>
-      </div>
+      </form>
     </div>
     <div data-view="entries" class="hidden"></div>
   </main>
