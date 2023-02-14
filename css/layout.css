@@ -14,16 +14,10 @@
 
 /* Container */
 .container {
-  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.column-full {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.column-half {
+.image-url {
   width: 100%;
 }
 
@@ -40,13 +34,21 @@
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
+    margin: 0 auto;
   }
 
+  .column-full,
   .column-half {
+    display: flex;
+    width: 100%;
+  }
+
+  .image-url {
     width: 50%;
   }
 
   .input-title-photourl {
     padding-left: 3%;
+    width: 100%;
   }
 }

@@ -24,10 +24,6 @@ h1 {
 }
 
 /* Title and Image URL and text area */
-.image-url {
-  height: 100%;
-}
-
 .title-container,
 .photourl-container,
 .notes-container {
