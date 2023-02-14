@@ -22,9 +22,10 @@ function handleSubmit(e) {
   formValues.url = $url;
   formValues.notes = $notes;
 
-  document.querySelector('.form-container').reset();
   $imageURL.src = 'images/placeholder-image-square.jpg';
   data.nextEntryId = $entryId + 1;
+  data.entries.push(formValues);
+  document.querySelector('.form-container').reset();
 }
 
 var $photoURL = document.querySelector('#photourl');
