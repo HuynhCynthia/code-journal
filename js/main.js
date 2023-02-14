@@ -56,14 +56,19 @@ function renderEntry(entry) {
   $newDescriptionDiv.appendChild($newPElement);
 
   return $newLiElement;
-
 }
 
+function addEntries(e) {
+  for (let i = 0; i < data.entries.length; i++) {
+    $ulElement.appendChild(renderEntry(data.entries[i]));
+  }
+}
 var $photoURL = document.querySelector('#photourl');
 var $imageURL = document.querySelector('.image-url');
 var $submit = document.querySelector('form');
+var $ulElement = document.querySelector('ul');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
-renderEntry(data.entries[2]);
+document.addEventListener('DOMContentLoaded', addEntries);
