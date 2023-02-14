@@ -17,10 +17,6 @@
   padding: 0 1rem;
 }
 
-.image-url {
-  width: 100%;
-}
-
 /* Text Area and Input */
 .savebutton-container {
   display: flex;
@@ -37,8 +33,8 @@
 
 .entry-image > img {
   object-fit: cover;
-  width: 450px;
-  height: 450px;
+  width: 100%;
+  height: 250px;
 }
 
 .entry-description {
@@ -48,6 +44,7 @@
 
 .entries {
   align-items: center;
+  padding: 0;
 }
 
 /* Media */
@@ -55,7 +52,7 @@
   .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 1rem;
   }
 
   .column-full,
@@ -69,6 +66,16 @@
   }
 
   .input-title-photourl {
+    padding-left: 3%;
+    width: 100%;
+  }
+
+  .entry-image > img {
+    width: 450px;
+    height: 450px;
+  }
+
+  .entry-description {
     padding-left: 3%;
     width: 100%;
   }
