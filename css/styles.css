@@ -19,10 +19,6 @@ body {
   margin: 0.5rem 0;
 }
 
-h1 {
-  margin: 0;
-}
-
 /* Title and Image URL and text area */
 .title-container,
 .photourl-container,
