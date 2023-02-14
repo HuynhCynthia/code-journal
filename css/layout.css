@@ -36,8 +36,9 @@
 }
 
 .entry-image > img {
-  width: 100%;
   object-fit: cover;
+  width: 450px;
+  height: 450px;
 }
 
 .entry-description {
@@ -45,11 +46,16 @@
   width: 100%;
 }
 
+.entries {
+  align-items: center;
+}
+
 /* Media */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0;
   }
 
   .column-full,
