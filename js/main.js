@@ -28,6 +28,37 @@ function handleSubmit(e) {
   document.querySelector('.form-container').reset();
 }
 
+function renderEntry(entry) {
+  var $newLiElement = document.createElement('li');
+  var $newEntryDiv = document.createElement('div');
+  var $newColumnHalfDiv = document.createElement('div');
+  var $newEntryImgDiv = document.createElement('div');
+  var $newImg = document.createElement('img');
+  var $newDescriptionDiv = document.createElement('div');
+  var $newH1Element = document.createElement('h1');
+  var $newPElement = document.createElement('p');
+
+  $newEntryDiv.className = 'entry-container';
+  $newColumnHalfDiv.className = 'column-half';
+  $newEntryImgDiv.className = 'entry-image';
+  $newImg.src = entry.url;
+  $newImg.className = 'image-url';
+  $newDescriptionDiv.className = 'entry-description';
+  $newH1Element.textContent = entry.title;
+  $newPElement.textContent = entry.notes;
+
+  $newLiElement.appendChild($newEntryDiv);
+  $newEntryDiv.appendChild($newColumnHalfDiv);
+  $newColumnHalfDiv.appendChild($newEntryImgDiv);
+  $newColumnHalfDiv.appendChild($newDescriptionDiv);
+  $newEntryImgDiv.appendChild($newImg);
+  $newDescriptionDiv.appendChild($newH1Element);
+  $newDescriptionDiv.appendChild($newPElement);
+
+  return $newLiElement;
+
+}
+
 var $photoURL = document.querySelector('#photourl');
 var $imageURL = document.querySelector('.image-url');
 var $submit = document.querySelector('form');
@@ -35,3 +66,4 @@ var $submit = document.querySelector('form');
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
+renderEntry(data.entries[2]);
