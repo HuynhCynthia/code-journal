@@ -65,7 +65,7 @@ function addEntries(e) {
 }
 
 function toggleNoEntries(e) {
-  if (data.entries.length === 0) {
+  if (data.entries.length !== 0) {
     $noEntries.className = 'no-entries hidden';
   }
 }
