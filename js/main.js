@@ -89,10 +89,12 @@ var $noEntries = document.querySelector('.no-entries');
 var $entryFormID = document.querySelector('#entry-form');
 var $entriesID = document.querySelector('#entries');
 var $tabEntries = document.querySelector('#entries-tab');
+var $newButton = document.querySelector('#new-button');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', addEntries);
 $tabEntries.addEventListener('click', viewSwap);
+$newButton.addEventListener('click', viewSwap);
 toggleNoEntries();

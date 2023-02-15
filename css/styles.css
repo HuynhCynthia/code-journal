@@ -117,7 +117,7 @@ li {
 }
 
 /* New Entry Button */
-.new-button {
+#new-button {
   padding: 0.5rem 0.9rem;
   text-transform: uppercase;
   border: none;
@@ -126,11 +126,11 @@ li {
   border-radius: 3px;
 }
 
-.new-button:hover {
+#new-button:hover {
   background-color: #720e9e;
 }
 
-.new-button:active {
+#new-button:active {
   transform: translateY(0.1rem);
 }
 
