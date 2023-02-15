@@ -26,6 +26,10 @@ function handleSubmit(e) {
   data.nextEntryId = $entryId + 1;
   data.entries.push(formValues);
   document.querySelector('.form-container').reset();
+
+  $ulElement.prepend(renderEntry(formValues));
+  viewSwap('entries');
+  toggleNoEntries();
 }
 
 function renderEntry(entry) {
@@ -60,7 +64,7 @@ function renderEntry(entry) {
 
 function addEntries(e) {
   for (let i = 0; i < data.entries.length; i++) {
-    $ulElement.appendChild(renderEntry(data.entries[i]));
+    $ulElement.prepend(renderEntry(data.entries[i]));
   }
 }
 
@@ -70,15 +74,23 @@ function toggleNoEntries(e) {
   }
 }
 
-function viewSwap(e) {
-  if (e.target.className === $entriesID.getAttribute('data-view')) {
+function viewSwap(viewType) {
+  if (viewType === $entriesID.getAttribute('data-view')) {
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
-  } else if (e.target.className === $entryFormID.getAttribute('data-view')) {
+  } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
   }
-  data.view = e.target.className;
+  data.view = viewType;
+}
+
+function eventViewSwap(e) {
+  if (e.target.className === $entriesID.getAttribute('data-view')) {
+    viewSwap('entries');
+  } else {
+    viewSwap('entry-form');
+  }
 }
 
 var $photoURL = document.querySelector('#photourl');
@@ -95,6 +107,6 @@ $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', addEntries);
-$tabEntries.addEventListener('click', viewSwap);
-$newButton.addEventListener('click', viewSwap);
+$tabEntries.addEventListener('click', eventViewSwap);
+$newButton.addEventListener('click', eventViewSwap);
 toggleNoEntries();

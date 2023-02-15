@@ -72,11 +72,11 @@ li {
 }
 
 /* Save Button */
-.savebutton-container {
+#savebutton-container {
   margin-top: 10px;
 }
 
-.save-button {
+#save-button {
   padding: 0.5rem 0.9rem;
   text-transform: uppercase;
   border: none;
@@ -85,11 +85,11 @@ li {
   border-radius: 3px;
 }
 
-.save-button:hover {
+#save-button:hover {
   background-color: #720e9e;
 }
 
-.save-button:active {
+#save-button:active {
   transform: translateY(0.1rem);
 }
 
