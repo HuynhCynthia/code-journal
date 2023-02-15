@@ -55,7 +55,7 @@ function renderEntry(entry) {
   $newPElement.textContent = entry.notes;
   $newEntryTitleContainer.className = 'entry-title-container flex';
   $spacerDiv.className = 'spacer';
-  $iElement.className = 'fa-solid fa-pencil';
+  $iElement.className = 'fa-solid fa-pencil entry-form';
 
   $newLiElement.appendChild($newEntryDiv);
   $newEntryDiv.appendChild($newColumnHalfDiv);
@@ -103,11 +103,12 @@ function viewSwap(viewType) {
 }
 
 function eventViewSwap(e) {
-  if (e.target.className === $entriesID.getAttribute('data-view')) {
-    viewSwap('entries');
-  } else {
+  if (e.target.matches('I') || e.target.className === $entryFormID.getAttribute('data-view')) {
     viewSwap('entry-form');
+  } else {
+    viewSwap('entries');
   }
+
 }
 
 var $photoURL = document.querySelector('#photourl');
@@ -119,6 +120,7 @@ var $entryFormID = document.querySelector('#entry-form');
 var $entriesID = document.querySelector('#entries');
 var $tabEntries = document.querySelector('#entries-tab');
 var $newButton = document.querySelector('#new-button');
+// var $pencilIcon = document.querySelectorAll('i');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
@@ -126,3 +128,4 @@ $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', pageReload);
 $tabEntries.addEventListener('click', eventViewSwap);
 $newButton.addEventListener('click', eventViewSwap);
+$ulElement.addEventListener('click', eventViewSwap);
