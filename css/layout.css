@@ -12,6 +12,10 @@
   width: 100%;
 }
 
+.top-bar {
+  display: flex;
+}
+
 /* Container */
 .container {
   padding: 0 1rem;
