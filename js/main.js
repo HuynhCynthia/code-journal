@@ -94,6 +94,5 @@ $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', addEntries);
-// DELETE THIS FUNCTION
-toggleNoEntries(data.entries);
 $tabEntries.addEventListener('click', viewSwap);
+toggleNoEntries();
