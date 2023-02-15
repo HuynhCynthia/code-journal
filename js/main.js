@@ -39,7 +39,10 @@ function renderEntry(entry) {
   var $newEntryImgDiv = document.createElement('div');
   var $newImg = document.createElement('img');
   var $newDescriptionDiv = document.createElement('div');
+  var $newEntryTitleContainer = document.createElement('div');
   var $newH1Element = document.createElement('h1');
+  var $spacerDiv = document.createElement('div');
+  var $iElement = document.createElement('i');
   var $newPElement = document.createElement('p');
 
   $newEntryDiv.className = 'entry-container';
@@ -50,16 +53,24 @@ function renderEntry(entry) {
   $newDescriptionDiv.className = 'entry-description';
   $newH1Element.textContent = entry.title;
   $newPElement.textContent = entry.notes;
+  $newEntryTitleContainer.className = 'entry-title-container flex';
+  $spacerDiv.className = 'spacer';
+  $iElement.className = 'fa-solid fa-pencil';
 
   $newLiElement.appendChild($newEntryDiv);
   $newEntryDiv.appendChild($newColumnHalfDiv);
   $newColumnHalfDiv.appendChild($newEntryImgDiv);
   $newColumnHalfDiv.appendChild($newDescriptionDiv);
   $newEntryImgDiv.appendChild($newImg);
-  $newDescriptionDiv.appendChild($newH1Element);
+  $newDescriptionDiv.appendChild($newEntryTitleContainer);
+  $newEntryTitleContainer.appendChild($newH1Element);
+  $newEntryTitleContainer.appendChild($spacerDiv);
+  $newEntryTitleContainer.appendChild($iElement);
   $newDescriptionDiv.appendChild($newPElement);
+  $newLiElement.setAttribute('data-entry-id', entry.entryId);
 
   return $newLiElement;
+
 }
 
 function pageReload(e) {

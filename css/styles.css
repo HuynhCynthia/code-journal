@@ -10,6 +10,7 @@ body {
 
 h1 {
   margin: 0;
+  width: 100%;
 }
 
 ul {
@@ -55,6 +56,10 @@ li {
 
 .image-url {
   width: 100%;
+}
+
+.fa-pencil {
+  align-self: center;
 }
 
 /* Title and Image URL and text area */
