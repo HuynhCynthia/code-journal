@@ -69,14 +69,30 @@ function toggleNoEntries(e) {
     $noEntries.className = 'no-entries hidden';
   }
 }
+
+function viewSwap(viewType) {
+  if (viewType === $entriesID.getAttribute('data-view')) {
+    $entriesID.removeAttribute('class');
+    $entryFormID.setAttribute('class', 'hidden');
+  } else if (viewType === $entryFormID.getAttribute('data-view')) {
+    $entriesID.setAttribute('class', 'hidden');
+    $entryFormID.removeAttribute('class');
+  }
+  data.view = viewType;
+}
+
 var $photoURL = document.querySelector('#photourl');
 var $imageURL = document.querySelector('.image-url');
 var $submit = document.querySelector('form');
 var $ulElement = document.querySelector('ul');
 var $noEntries = document.querySelector('.no-entries');
+var $entryFormID = document.querySelector('#entry-form');
+var $entriesID = document.querySelector('#entries');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', addEntries);
+// DELETE THIS FUNCTION
 toggleNoEntries(data.entries);
+viewSwap('entry-form');
