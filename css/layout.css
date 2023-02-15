@@ -17,10 +17,6 @@
   padding: 0 1rem;
 }
 
-.image-url {
-  width: 100%;
-}
-
 /* Text Area and Input */
 .savebutton-container {
   display: flex;
@@ -35,16 +31,13 @@
   .container {
     max-width: 900px;
     margin: 0 auto;
+    padding: 0 1rem;
   }
 
   .column-full,
   .column-half {
     display: flex;
     width: 100%;
-  }
-
-  .image-url {
-    width: 50%;
   }
 
   .input-title-photourl {

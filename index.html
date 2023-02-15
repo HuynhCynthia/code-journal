@@ -23,11 +23,14 @@
 <body>
   <header>
     <div class="container">
-      <div class="top-bar column-full">Code Journal</div>
+      <div class="top-bar column-full">
+        <h3>Code Journal</h3>
+        <a class="entries" id="entries-tab">Entries</a>
+      </div>
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form">
+    <div data-view="entry-form" class="hidden" id="entry-form">
       <h1 class="new-entry">New Entry</h1>
       <form class="form-container">
         <div class="column-half">
@@ -66,11 +69,24 @@
           <input
             type="submit"
             value="save"
-            class="save-button">
+            id="save-button"
+            class="entries">
         </div>
       </form>
     </div>
-    <div data-view="entries" class="hidden"></div>
+    <!-- Entries-->
+    <div data-view="entries" id="entries">
+      <div class="entries">
+        <h1 class="entries-heading">Entries</h1>
+        <div class="spacer"></div>
+        <a id="new-button" class="entry-form">NEW</a>
+      </div>
+      <div class="no-entries">
+        <p>No entries have been recorded.</p>
+      </div>
+      <ul>
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
