@@ -29,7 +29,7 @@ function handleSubmit(e) {
 
   $ulElement.prepend(renderEntry(formValues));
   viewSwap('entries');
-  toggleNoEntries();
+  toggleNoEntries(data.entries);
 }
 
 function renderEntry(entry) {
@@ -62,13 +62,19 @@ function renderEntry(entry) {
   return $newLiElement;
 }
 
-function addEntries(e) {
-  for (let i = 0; i < data.entries.length; i++) {
-    $ulElement.prepend(renderEntry(data.entries[i]));
+function pageReload(e) {
+  if (data.view !== 'entry-form') {
+    for (let i = 0; i < data.entries.length; i++) {
+      $ulElement.prepend(renderEntry(data.entries[i]));
+    }
+  } else {
+    viewSwap('entry-form');
   }
+
+  toggleNoEntries(data.entries);
 }
 
-function toggleNoEntries(e) {
+function toggleNoEntries(dataEntries) {
   if (data.entries.length !== 0) {
     $noEntries.className = 'no-entries hidden';
   }
@@ -106,7 +112,6 @@ var $newButton = document.querySelector('#new-button');
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
 $submit.addEventListener('submit', handleSubmit);
-document.addEventListener('DOMContentLoaded', addEntries);
+document.addEventListener('DOMContentLoaded', pageReload);
 $tabEntries.addEventListener('click', eventViewSwap);
 $newButton.addEventListener('click', eventViewSwap);
-toggleNoEntries();
