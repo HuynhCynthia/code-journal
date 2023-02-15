@@ -51,6 +51,10 @@
   padding: 0;
 }
 
+.image-url {
+  width: 100%;
+}
+
 /* Media */
 @media screen and (min-width: 768px) {
   .container {
