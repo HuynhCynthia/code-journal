@@ -29,7 +29,7 @@ function handleSubmit(e) {
 
   $ulElement.prepend(renderEntry(formValues));
   viewSwap('entries');
-  toggleNoEntries(data.entries);
+  toggleNoEntries();
 }
 
 function renderEntry(entry) {
@@ -71,7 +71,7 @@ function pageReload(e) {
     viewSwap('entry-form');
   }
 
-  toggleNoEntries(data.entries);
+  toggleNoEntries();
 }
 
 function toggleNoEntries(dataEntries) {
