@@ -70,15 +70,15 @@ function toggleNoEntries(e) {
   }
 }
 
-function viewSwap(viewType) {
-  if (viewType === $entriesID.getAttribute('data-view')) {
+function viewSwap(e) {
+  if (e.target.className === $entriesID.getAttribute('data-view')) {
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
-  } else if (viewType === $entryFormID.getAttribute('data-view')) {
+  } else if (e.target.className === $entryFormID.getAttribute('data-view')) {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
   }
-  data.view = viewType;
+  data.view = e.target.className;
 }
 
 var $photoURL = document.querySelector('#photourl');
@@ -88,6 +88,7 @@ var $ulElement = document.querySelector('ul');
 var $noEntries = document.querySelector('.no-entries');
 var $entryFormID = document.querySelector('#entry-form');
 var $entriesID = document.querySelector('#entries');
+var $tabEntries = document.querySelector('#entries-tab');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
@@ -95,4 +96,4 @@ $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', addEntries);
 // DELETE THIS FUNCTION
 toggleNoEntries(data.entries);
-viewSwap('entry-form');
+$tabEntries.addEventListener('click', viewSwap);
