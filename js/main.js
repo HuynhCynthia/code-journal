@@ -95,6 +95,7 @@ function viewSwap(viewType) {
   if (viewType === $entriesID.getAttribute('data-view')) {
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
+    toggleNoEntries();
   } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
@@ -103,12 +104,33 @@ function viewSwap(viewType) {
 }
 
 function eventViewSwap(e) {
-  if (e.target.matches('I') || e.target.className === $entryFormID.getAttribute('data-view')) {
+  if (e.target.className === $entryFormID.getAttribute('data-view')) {
     viewSwap('entry-form');
   } else {
     viewSwap('entries');
   }
+}
 
+function pencilClicked(e) {
+  if (e.target.matches('I')) {
+    viewSwap('entry-form');
+    var dataEntryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (dataEntryId === data.entries[i].entryId) {
+        var objectPopulate = data.entries[i];
+        break;
+      }
+    }
+    data.editing = objectPopulate;
+    $titlePopulate.value = objectPopulate.title;
+    $photoURL.value = objectPopulate.url;
+    $notesID.value = objectPopulate.notes;
+    $imageURL.src = objectPopulate.url;
+    $formTitle.textContent = 'Edit Entry';
+  } else {
+    viewSwap('entries');
+  }
 }
 
 var $photoURL = document.querySelector('#photourl');
@@ -120,7 +142,9 @@ var $entryFormID = document.querySelector('#entry-form');
 var $entriesID = document.querySelector('#entries');
 var $tabEntries = document.querySelector('#entries-tab');
 var $newButton = document.querySelector('#new-button');
-// var $pencilIcon = document.querySelectorAll('i');
+var $titlePopulate = document.querySelector('#title');
+var $notesID = document.querySelector('#notes');
+var $formTitle = document.querySelector('.new-entry');
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
@@ -128,4 +152,4 @@ $submit.addEventListener('submit', handleSubmit);
 document.addEventListener('DOMContentLoaded', pageReload);
 $tabEntries.addEventListener('click', eventViewSwap);
 $newButton.addEventListener('click', eventViewSwap);
-$ulElement.addEventListener('click', eventViewSwap);
+$ulElement.addEventListener('click', pencilClicked);
