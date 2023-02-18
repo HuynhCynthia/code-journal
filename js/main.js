@@ -17,19 +17,72 @@ function handleSubmit(e) {
   var $notes = $form.elements.notes.value;
   var $entryId = data.nextEntryId;
 
-  formValues.entryId = $entryId;
-  formValues.title = $title;
-  formValues.url = $url;
-  formValues.notes = $notes;
+  if (data.editing === null) {
+    formValues.entryId = $entryId;
+    formValues.title = $title;
+    formValues.url = $url;
+    formValues.notes = $notes;
 
-  $imageURL.src = 'images/placeholder-image-square.jpg';
-  data.nextEntryId = $entryId + 1;
-  data.entries.push(formValues);
-  document.querySelector('.form-container').reset();
+    $imageURL.src = 'images/placeholder-image-square.jpg';
+    data.nextEntryId = $entryId + 1;
+    data.entries.push(formValues);
+    document.querySelector('.form-container').reset();
 
-  $ulElement.prepend(renderEntry(formValues));
-  viewSwap('entries');
-  toggleNoEntries();
+    $ulElement.prepend(renderEntry(formValues));
+    viewSwap('entries');
+    toggleNoEntries();
+  } else {
+    data.editing.title = $form.elements.title.value;
+    data.editing.url = $form.elements.url.value;
+    data.editing.notes = $form.elements.notes.value;
+
+    var newObject = {};
+    newObject.entryId = data.editing.entryId;
+    newObject.title = data.editing.title;
+    newObject.url = data.editing.url;
+    newObject.notes = data.editing.notes;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === newObject.entryId) {
+        data.entries[i].title = newObject.title;
+        data.entries[i].url = newObject.url;
+        data.entries[i].notes = newObject.notes;
+      }
+    }
+
+    var $liElement = document.querySelectorAll('li');
+
+    for (let i = 0; i < $liElement.length; i++) {
+      if (Number($liElement[i].getAttribute('data-entry-id')) === newObject.entryId) {
+        $liElement[i].replaceWith(renderEntry(newObject));
+
+      }
+    }
+
+    $formTitle.textContent = 'New Entry';
+    data.editing = null;
+    viewSwap('entries');
+  }
+}
+
+function pencilClicked(e) {
+  if (e.target.matches('I')) {
+    viewSwap('entry-form');
+    var dataEntryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (dataEntryId === data.entries[i].entryId) {
+        data.editing = data.entries[i];
+        break;
+      }
+    }
+    $titlePopulate.value = data.editing.title;
+    $photoURL.value = data.editing.url;
+    $notesID.value = data.editing.notes;
+    $imageURL.src = data.editing.url;
+    $formTitle.textContent = 'Edit Entry';
+  } else {
+    viewSwap('entries');
+  }
 }
 
 function renderEntry(entry) {
@@ -95,7 +148,6 @@ function viewSwap(viewType) {
   if (viewType === $entriesID.getAttribute('data-view')) {
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
-    toggleNoEntries();
   } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
@@ -106,28 +158,6 @@ function viewSwap(viewType) {
 function eventViewSwap(e) {
   if (e.target.className === $entryFormID.getAttribute('data-view')) {
     viewSwap('entry-form');
-  } else {
-    viewSwap('entries');
-  }
-}
-
-function pencilClicked(e) {
-  if (e.target.matches('I')) {
-    viewSwap('entry-form');
-    var dataEntryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
-
-    for (let i = 0; i < data.entries.length; i++) {
-      if (dataEntryId === data.entries[i].entryId) {
-        var objectPopulate = data.entries[i];
-        break;
-      }
-    }
-    data.editing = objectPopulate;
-    $titlePopulate.value = objectPopulate.title;
-    $photoURL.value = objectPopulate.url;
-    $notesID.value = objectPopulate.notes;
-    $imageURL.src = objectPopulate.url;
-    $formTitle.textContent = 'Edit Entry';
   } else {
     viewSwap('entries');
   }
