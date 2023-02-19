@@ -80,8 +80,6 @@ function pencilClicked(e) {
     $notesID.value = data.editing.notes;
     $imageURL.src = data.editing.url;
     $formTitle.textContent = 'Edit Entry';
-  } else {
-    viewSwap('entries');
   }
 }
 
@@ -148,6 +146,14 @@ function viewSwap(viewType) {
   if (viewType === $entriesID.getAttribute('data-view')) {
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
+    data.editing = null;
+
+    $formTitle.textContent = 'New Entry';
+    var $form = document.querySelector('.form-container');
+    $form.elements.title.value = '';
+    $form.elements.url.value = '';
+    $form.elements.notes.value = '';
+    $imageURL.src = 'images/placeholder-image-square.jpg';
   } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
