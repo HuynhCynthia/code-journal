@@ -179,3 +179,75 @@ li {
     width: 50%;
   }
 }
+
+/* Start Issue 4 */
+#delete-button {
+  border-style: none;
+  background-color: none;
+  color: red;
+  text-decoration: underline;
+}
+
+#delete-button:active {
+  transform: translateY(0.1rem);
+}
+
+/* Modal Button */
+
+#delete-modal > p {
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.modal-button-container {
+  display: flex;
+}
+
+.modal-button {
+  border: 0;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.cancel {
+  background-color: grey;
+  color: #202020;
+}
+
+.confirm {
+  background-color: rgba(220, 0, 0, 1);
+  color: white;
+}
+
+.modal-button:hover {
+  transform: scale(1.05);
+}
+
+.modal-button:active {
+  transform: scale(1);
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: 75%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.delete-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  padding: 30px;
+}

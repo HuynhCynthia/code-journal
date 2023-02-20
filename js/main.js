@@ -80,6 +80,12 @@ function pencilClicked(e) {
     $notesID.value = data.editing.notes;
     $imageURL.src = data.editing.url;
     $formTitle.textContent = 'Edit Entry';
+
+    // Start Issue 4
+    // console.log('$deleteButton.classList before', $deleteButton.classList);
+    $deleteButton.classList.remove('hidden');
+    // console.log('$deleteButton.classList after', $deleteButton.classList);
+    // End Issue 4
   }
 }
 
@@ -125,6 +131,9 @@ function renderEntry(entry) {
 }
 
 function pageReload(e) {
+  // console.log('data:', data);
+  // console.log('cucumber');
+  // console.log('Issue 4', data.view);
   if (data.view !== 'entry-form') {
     for (let i = 0; i < data.entries.length; i++) {
       $ulElement.prepend(renderEntry(data.entries[i]));
@@ -144,16 +153,20 @@ function toggleNoEntries(dataEntries) {
 
 function viewSwap(viewType) {
   if (viewType === $entriesID.getAttribute('data-view')) {
+    // console.log('pizza');
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
     data.editing = null;
-
+    // Ensure Edit Form is cleared out
     $formTitle.textContent = 'New Entry';
     var $form = document.querySelector('.form-container');
     $form.elements.title.value = '';
     $form.elements.url.value = '';
     $form.elements.notes.value = '';
     $imageURL.src = 'images/placeholder-image-square.jpg';
+    // Ensure DOM tree reloads
+    data.view = viewType;
+    pageReload();
   } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
@@ -169,6 +182,12 @@ function eventViewSwap(e) {
   }
 }
 
+function showModal(e) {
+  // console.log('e', e);
+  // console.log('e.target', e.target);
+  $modalDiv.classList.remove('hidden');
+}
+
 var $photoURL = document.querySelector('#photourl');
 var $imageURL = document.querySelector('.image-url');
 var $submit = document.querySelector('form');
@@ -181,6 +200,10 @@ var $newButton = document.querySelector('#new-button');
 var $titlePopulate = document.querySelector('#title');
 var $notesID = document.querySelector('#notes');
 var $formTitle = document.querySelector('.new-entry');
+
+var $deleteButton = document.querySelector('#delete-button');
+var $modalDiv = document.querySelector('.modal');
+$deleteButton.addEventListener('click', showModal);
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
