@@ -17,7 +17,7 @@ function handleSubmit(e) {
   var $notes = $form.elements.notes.value;
   var $entryId = data.nextEntryId;
 
-  if (data.editing === null) {
+  if (data.editing === null && $formTitle.textContent === 'New Entry') {
     formValues.entryId = $entryId;
     formValues.title = $title;
     formValues.url = $url;
@@ -29,8 +29,8 @@ function handleSubmit(e) {
     document.querySelector('.form-container').reset();
 
     $ulElement.prepend(renderEntry(formValues));
-    viewSwap('entries');
     toggleNoEntries();
+    viewSwap('entries');
   } else {
     data.editing.title = $form.elements.title.value;
     data.editing.url = $form.elements.url.value;
@@ -81,11 +81,7 @@ function pencilClicked(e) {
     $imageURL.src = data.editing.url;
     $formTitle.textContent = 'Edit Entry';
 
-    // Start Issue 4
-    // console.log('$deleteButton.classList before', $deleteButton.classList);
     $deleteButton.classList.remove('hidden');
-    // console.log('$deleteButton.classList after', $deleteButton.classList);
-    // End Issue 4
   }
 }
 
@@ -131,9 +127,6 @@ function renderEntry(entry) {
 }
 
 function pageReload(e) {
-  // console.log('data:', data);
-  // console.log('cucumber');
-  // console.log('Issue 4', data.view);
   if (data.view !== 'entry-form') {
     for (let i = 0; i < data.entries.length; i++) {
       $ulElement.prepend(renderEntry(data.entries[i]));
@@ -147,13 +140,14 @@ function pageReload(e) {
 
 function toggleNoEntries(dataEntries) {
   if (data.entries.length !== 0) {
-    $noEntries.className = 'no-entries hidden';
+    $noEntries.classList.add('hidden');
+  } else {
+    $noEntries.classList.remove('hidden');
   }
 }
 
 function viewSwap(viewType) {
   if (viewType === $entriesID.getAttribute('data-view')) {
-    // console.log('pizza');
     $entriesID.removeAttribute('class');
     $entryFormID.setAttribute('class', 'hidden');
     data.editing = null;
@@ -166,7 +160,7 @@ function viewSwap(viewType) {
     $imageURL.src = 'images/placeholder-image-square.jpg';
     // Ensure DOM tree reloads
     data.view = viewType;
-    pageReload();
+    $deleteButton.classList.add('hidden');
   } else {
     $entriesID.setAttribute('class', 'hidden');
     $entryFormID.removeAttribute('class');
@@ -182,10 +176,32 @@ function eventViewSwap(e) {
   }
 }
 
-function showModal(e) {
-  // console.log('e', e);
-  // console.log('e.target', e.target);
-  $modalDiv.classList.remove('hidden');
+function displayModal(e) {
+  if (e.target.id === $deleteButton.id) {
+    $modalDiv.classList.remove('hidden');
+  } else {
+    $modalDiv.classList.add('hidden');
+  }
+}
+
+function removeEntry(e) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice(i);
+    }
+  }
+
+  var $liElement = document.querySelectorAll('li');
+
+  for (let i = 0; i < $liElement.length; i++) {
+    if (Number($liElement[i].getAttribute('data-entry-id')) === data.editing.entryId) {
+      $ulElement.removeChild($liElement[i]);
+    }
+  }
+
+  $modalDiv.classList.add('hidden');
+  toggleNoEntries(data.entries);
+  viewSwap('entries');
 }
 
 var $photoURL = document.querySelector('#photourl');
@@ -203,7 +219,11 @@ var $formTitle = document.querySelector('.new-entry');
 
 var $deleteButton = document.querySelector('#delete-button');
 var $modalDiv = document.querySelector('.modal');
-$deleteButton.addEventListener('click', showModal);
+var $cancelButton = document.querySelector('.cancel');
+var $confirmButton = document.querySelector('.confirm');
+$deleteButton.addEventListener('click', displayModal);
+$cancelButton.addEventListener('click', displayModal);
+$confirmButton.addEventListener('click', removeEntry);
 
 $photoURL.addEventListener('paste', pastePhotoUrl);
 $photoURL.addEventListener('input', inputPhotoUrl);
