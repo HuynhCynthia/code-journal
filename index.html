@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -20,6 +18,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -38,40 +37,24 @@
           <div class="input-title-photourl">
             <div class="title-container">
               <label for="title">Title</label>
-              <input
-                required
-                class="row"
-                name="name"
-                type="text"
-                id="title">
+              <input required class="row" name="name" type="text" id="title">
             </div>
             <div class="photourl-container">
               <label for="photourl">Photo URL</label>
-              <input
-                required
-                class="row"
-                type="url"
-                name="url"
-                id="photourl">
+              <input required class="row" type="url" name="url" id="photourl">
             </div>
           </div>
         </div>
         <div class="notes-container">
           <label for="notes">Notes</label>
-          <textarea
-            required
-            class="notes row"
-            name="notes"
-            id="notes"
-          ></textarea>
+          <textarea required class="notes row" name="notes" id="notes"></textarea>
         </div>
         <div class="savebutton-container">
+          <!-- Start of After Issues 3 -->
+          <input type="button" value="Delete Entry" id="delete-button" class="new-button hidden">
+          <!-- End of After Issues 3 -->
           <div class="spacer"></div>
-          <input
-            type="submit"
-            value="save"
-            id="save-button"
-            class="entries">
+          <input type="submit" value="save" id="save-button" class="entries">
         </div>
       </form>
     </div>
@@ -88,8 +71,27 @@
       <ul>
       </ul>
     </div>
+    <!-- Start Issue 4 -->
+    <!-- Modal -->
+    <div class="modal hidden">
+      <div class="overlay"></div>
+      <div class="delete-modal">
+        <p>Are you sure you want to delete this entry?</p>
+        <div class="modal-button-container">
+          <button class="modal-button cancel" type="button">
+            CANCEL
+          </button>
+          <div class="spacer"></div>
+          <button class="modal-button confirm" type="button">
+            CONFIRM
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- End Issue 4-->
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
